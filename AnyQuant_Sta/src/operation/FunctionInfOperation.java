@@ -6,7 +6,7 @@ public class FunctionInfOperation extends Operation{
 		try {
 			super.createTable("create table Function("
 					+ "name varchar(15) not null primary key,"
-					+ "discription varchar(1000),"
+					+ "discription mediumtext,"
 					+ "type varchar(16),"
 					+ "rank int"
 					+ ")");

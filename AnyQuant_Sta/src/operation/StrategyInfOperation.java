@@ -6,7 +6,7 @@ public class StrategyInfOperation extends Operation{
 		try {
 			super.createTable("create table StrategyInf("
 					+ "name varchar(15) not null primary key,"
-					+ "discription varchar(10000),"
+					+ "discription mediumtext,"
 					+ "type varchar(16),"
 					+ "rank int"
 					+ ")");
