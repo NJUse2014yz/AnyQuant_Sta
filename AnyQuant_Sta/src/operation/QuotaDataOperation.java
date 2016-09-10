@@ -991,5 +991,35 @@ public class QuotaDataOperation extends Operation{
 //		datePack.setDate1(date);
 //		return quotaDataMapper.selectQuotaData_e_date(datePack);
 //	}
-	
+	public List<Double> selectCondition(String siid,String attribute,String condition)
+	{
+//		System.out.println("select * from HistoryData_"+siid+" "+condition);
+		List list=null;
+		List<Double> resultList=new ArrayList<Double>();
+		Connector conn=new Connector();
+		try {
+			list = QueryTool.resultSetToList(super.select(conn,"select "+attribute+" from QuotaData_"+siid+" "+condition));
+			conn.close();
+			if(list.size()==0)
+				return null;
+			for(int i=0;i<list.size();i++)
+			{
+				HashMap hm=(HashMap)list.get(i);
+	//			System.out.println(hm.get("date").getClass());
+				resultList.add((double) hm.get(attribute));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultList;
+	}
+	public List<Double> selectAttribute_num_date(String siid,String attribute,int num,Date date)
+	{
+		List<Double> quotaDataList=selectCondition(siid,attribute,
+				"where (select max(id) from QuotaData_"+siid
+				+" where date<='"+date.toString()
+				+"') between id and id+"+num+"-1"
+				+" order by id");
+		return quotaDataList;
+	}
 }

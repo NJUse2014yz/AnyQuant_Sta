@@ -52,7 +52,8 @@ public class Operation {
 //		new ConceptInfOperation().initailTable();
 //		new IndustryInfOperation().initailTable();
 //		new AreaLatestOperation().initailTable();
-		new StrategyOperation().createTable();
+//		new StrategyOperation().createTable();
+//		new MultFactStockRecommendOperation().initialTable();
 
 //		FunctionOperation fo=new FunctionOperation();
 //		fo.createTable();
@@ -92,9 +93,9 @@ public class Operation {
 		new MonthHDataOperation().updateAll();
 		new WeekQDataOperation().updateAll();
 		new MonthQDataOperation().updateAll();
-		new AreaLatestOperation().updateAll();
-		new ConceptLatestOperation().updateAll();
-		new IndustryLatestOperation().updateAll();
+//		new AreaLatestOperation().updateAll();
+//		new ConceptLatestOperation().updateAll();
+//		new IndustryLatestOperation().updateAll();
 		
 	}
 	public static void main(String[] args)
@@ -110,12 +111,12 @@ public class Operation {
 			}
 			else if(order.equals("update"))
 			{
-				Calendar cal=Calendar.getInstance();
-				if(cal.get(Calendar.HOUR_OF_DAY)==16)
-				{
+//				Calendar cal=Calendar.getInstance();
+//				if(cal.get(Calendar.HOUR_OF_DAY)==16)
+//				{
 					update();
 					System.out.println("update done!");
-				}
+//				}
 			}
 			else
 			{
