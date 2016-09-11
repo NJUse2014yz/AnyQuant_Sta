@@ -2,13 +2,10 @@ package operation;
 
 import java.sql.Date;
 import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import type.StockInf;
 import type.StockPair;
@@ -59,6 +56,7 @@ public class StockInfOperation extends Operation{
 		createTable();
 		List<StockInf> stockInfList=new ArrayList<StockInf>();
 		List<StockInf> list = JsonExchangeTool.getStockInf();
+		System.out.println(list);
 		for(int i=0;i<list.size();i++)
 		{
 			stockInfList.add(list.get(i));
@@ -141,7 +139,14 @@ public class StockInfOperation extends Operation{
 			sql+="'"+stockInf.getSname()+"'";
 			break;
 		case "date":
-			sql+="'"+stockInf.getDate()+"'";
+			if(stockInf.getDate()!=null)
+			{
+				sql+="'"+stockInf.getDate()+"'";
+			}
+			else
+			{
+				sql+="null";
+			}
 			break;
 		case "hisid":
 			sql+=stockInf.getHisid();
@@ -223,7 +228,7 @@ public class StockInfOperation extends Operation{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		List list=null;
+		List<HashMap<String,Object>> list=null;
 		try {
 			list=QueryTool.resultSetToList(resultSet);
 		} catch (SQLException e) {
@@ -232,7 +237,7 @@ public class StockInfOperation extends Operation{
 		conn.close();
 		for(int i=0;i<list.size();i++)
 		{
-			HashMap map=(HashMap)list.get(i);
+			HashMap<String,Object> map=list.get(i);
 			sidList.add((String)map.get("sid"));	
 		}
 		return sidList;
@@ -247,7 +252,7 @@ public class StockInfOperation extends Operation{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		List list=null;
+		List<HashMap<String,Object>> list=null;
 		try {
 			list=QueryTool.resultSetToList(resultSet);
 		} catch (SQLException e) {
@@ -255,7 +260,7 @@ public class StockInfOperation extends Operation{
 		}
 		for(int i=0;i<list.size();i++)
 		{
-			HashMap map=(HashMap)list.get(i);
+			HashMap<String,Object> map=list.get(i);
 			stockInfList.add(new StockInf(
 					(int)map.get("id"),(String)map.get("sid"),(String)map.get("sname"),(Date)map.get("date"),(int)map.get("hisid"),(int)map.get("quoid"),
 					(int)map.get("weekid"),(int)map.get("weekhisid"),(int)map.get("weekquoid"),

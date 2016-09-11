@@ -1,9 +1,5 @@
 package helper;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -11,7 +7,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 
@@ -73,6 +68,7 @@ public class JsonExchangeTool {
 //	}
 	
 	/**从API获取股票列表转化为StockInf*/
+	@SuppressWarnings("resource")
 	public static List<StockInf> getStockInf()
 	{
 		String prefix="http://web.juhe.cn:8080/finance/stock/";
@@ -112,7 +108,7 @@ public class JsonExchangeTool {
 					e.printStackTrace();
 				}
 				
-//				System.out.println(stringBuffer.toString());
+				System.out.println(stringBuffer.toString());
 				
 				jsonObject_response=JSONObject.fromObject(stringBuffer.toString());
 				if((int)jsonObject_response.get("error_code")==0)
@@ -122,7 +118,7 @@ public class JsonExchangeTool {
 					for(int j=0;j<jsonObject_data.size();j++)
 					{
 						infString=(StockInfString) JSONObject.toBean((JSONObject)jsonObject_data.get(j), StockInfString.class);
-//						System.out.println(infString);
+						System.out.println(infString);
 						list.add(new StockInf(list.size(),infString.getSymbol(),infString.getName(),null,-1,-1,-1,-1,-1,-1,-1,-1));
 					}
 				}
@@ -138,6 +134,7 @@ public class JsonExchangeTool {
 	}
 
 	/**从API获取股票历史数据转化为HistoryData*/
+	@SuppressWarnings({ "deprecation", "resource" })
 	public static List<HistoryData> getStockHistoryData(String gid,Date date1,Date date2)
 	{
 		if(date1==null)
@@ -202,6 +199,7 @@ public class JsonExchangeTool {
 	}
 
 	/**从API获取指数历史数据转化为HistoryData*/
+	@SuppressWarnings({ "deprecation", "resource" })
 	public static List<HistoryData> getIndiceHistoryData(String gid,Date date1,Date date2)
 	{
 		if(date1==null)

@@ -201,7 +201,7 @@ public class WeekHDataOperation extends Operation{
 	public List<HistoryData> selectCondition(String siid,String condition)
 	{
 //		System.out.println("select * from HistoryData_"+siid+" "+condition);
-		List list=null;
+		List<HashMap<String,Object>> list=null;
 		List<HistoryData> historyDataList=new ArrayList<HistoryData>();
 		Connector conn=new Connector();
 		try {
@@ -211,7 +211,7 @@ public class WeekHDataOperation extends Operation{
 				return null;
 			for(int i=0;i<list.size();i++)
 			{
-				HashMap hm=(HashMap)list.get(i);
+				HashMap<String,Object> hm=list.get(i);
 	//			System.out.println(hm.get("date").getClass());
 				historyDataList.add(new HistoryData(0,(Date)hm.get("date"),
 						(int)hm.get("weekid"),0,0,

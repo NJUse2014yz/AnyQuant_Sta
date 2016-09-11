@@ -85,6 +85,7 @@ public class HistoryDataOperation extends Operation{
 //		}
 //	}
 	
+	@SuppressWarnings("deprecation")
 	public void updateTable(String type,String siid)
 	{
 		List<String> attributes=new ArrayList<String>();
@@ -224,7 +225,7 @@ public class HistoryDataOperation extends Operation{
 	public List<HistoryData> selectCondition(String siid,String condition)
 	{
 //		System.out.println("select * from HistoryData_"+siid+" "+condition);
-		List list=null;
+		List<HashMap<String,Object>> list=null;
 		List<HistoryData> historyDataList=new ArrayList<HistoryData>();
 		Connector conn=new Connector();
 		try {
@@ -234,7 +235,7 @@ public class HistoryDataOperation extends Operation{
 				return null;
 			for(int i=0;i<list.size();i++)
 			{
-				HashMap hm=(HashMap)list.get(i);
+				HashMap<String,Object> hm=list.get(i);
 	//			System.out.println(hm.get("date").getClass());
 				historyDataList.add(new HistoryData((int)hm.get("id"),(Date)hm.get("date"),
 						(int)hm.get("weekid"),(int)hm.get("monthid"),(int)hm.get("yearid"),
@@ -291,7 +292,7 @@ public class HistoryDataOperation extends Operation{
 	public List<Double> selectCondition(String siid,String attribute,String condition)
 	{
 //		System.out.println("select * from HistoryData_"+siid+" "+condition);
-		List list=null;
+		List<HashMap<String,Object>> list=null;
 		List<Double> resultList=new ArrayList<Double>();
 		Connector conn=new Connector();
 		try {
@@ -301,7 +302,7 @@ public class HistoryDataOperation extends Operation{
 				return null;
 			for(int i=0;i<list.size();i++)
 			{
-				HashMap hm=(HashMap)list.get(i);
+				HashMap<String,Object> hm=list.get(i);
 	//			System.out.println(hm.get("date").getClass());
 				resultList.add((double) hm.get(attribute));
 			}

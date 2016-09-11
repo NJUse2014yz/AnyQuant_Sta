@@ -72,7 +72,7 @@ public class AreaLatestOperation extends Operation{
 	}
 	public void updateAll()
 	{
-		List list=null;
+		List<HashMap<String,Object>> list=null;
 		Connector conn=new Connector();
 		try {
 			list=QueryTool.resultSetToList(super.select(conn,"select distinct sid from AreaLatest"));
@@ -82,12 +82,12 @@ public class AreaLatestOperation extends Operation{
 		conn.close();
 		for(int i=0;i<list.size();i++)
 		{
-			updateTable((String)((HashMap)list.get(i)).get("sid"));
+			updateTable((String)(list.get(i)).get("sid"));
 		}
 	}
 	public List<String> selectSiid()
 	{
-		List list=null;
+		List<HashMap<String,Object>> list=null;
 		List<String> sidList=new ArrayList<String>();
 		Connector conn=new Connector();
 		try {
@@ -98,7 +98,7 @@ public class AreaLatestOperation extends Operation{
 		conn.close();
 		for(int i=0;i<list.size();i++)
 		{
-			sidList.add((String)((HashMap)list.get(i)).get("sid"));
+			sidList.add((String)(list.get(i)).get("sid"));
 		}
 		return sidList;
 	}

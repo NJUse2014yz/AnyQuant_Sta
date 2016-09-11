@@ -451,7 +451,7 @@ public class WeekQDataOperation extends Operation{
 	public List<QuotaData> selectCondition(String siid,String condition)
 	{
 //		System.out.println("select * from HistoryData_"+siid+" "+condition);
-		List list=null;
+		List<HashMap<String,Object>> list=null;
 		List<QuotaData> quotaDataList=new ArrayList<QuotaData>();
 		Connector conn=new Connector();
 		try {
@@ -461,7 +461,7 @@ public class WeekQDataOperation extends Operation{
 				return null;
 			for(int i=0;i<list.size();i++)
 			{
-				HashMap hm=(HashMap)list.get(i);
+				HashMap<String,Object> hm=list.get(i);
 	//			System.out.println(hm.get("date").getClass());
 				quotaDataList.add(new QuotaData(
 						(int)hm.get("weekid"),(Date)hm.get("date"),
@@ -490,7 +490,7 @@ public class WeekQDataOperation extends Operation{
 			int n10=10;
 			int n20=20;
 			int n30=30;
-			HistoryData nowhistoryData=hisList.get(quotaData.getId());
+//			HistoryData nowhistoryData=hisList.get(quotaData.getId());
 			
 			if(quotaData.getId()>=n5-1)
 			{
@@ -792,6 +792,7 @@ public class WeekQDataOperation extends Operation{
 	}
 	
 	/**设置动向指标 */
+	@SuppressWarnings("null")
 	public static void setDmi(String siid,QuotaData quotaData) throws Exception
 	{
 		if(quotaData.getId()>=1)

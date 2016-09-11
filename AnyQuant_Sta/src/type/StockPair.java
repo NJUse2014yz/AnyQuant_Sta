@@ -1,7 +1,5 @@
 package type;
 
-import type.StockInf;
-
 public class StockPair {
 	public String sid;
 	public double correlation;

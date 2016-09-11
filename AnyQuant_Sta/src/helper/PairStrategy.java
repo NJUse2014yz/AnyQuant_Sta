@@ -6,7 +6,6 @@ import java.util.Calendar;
 import java.util.List;
 
 import operation.HistoryDataOperation;
-import type.StockInf;
 import helper.LinearRegressionTool;
 import helper.MMSTool;
 import type.StockPair;

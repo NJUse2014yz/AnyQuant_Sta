@@ -1,14 +1,12 @@
 package helper;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 import operation.HistoryDataOperation;
 import operation.QuotaDataOperation;
-import operation.QuotaInfOperation;
 import operation.StockInfOperation;
 import type.MultFacInf;
 import type.MultFactData;
@@ -27,12 +25,11 @@ public class MultFacHelper {
 		List<StockInf> stolist = stockInfOperation.selectAllCondition("");
 		ArrayList<MultFacInf> templist=new ArrayList<MultFacInf>();
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Calendar today = Calendar.getInstance();
 
 		for(int i=0;i<stolist.size();i++){
 			String stockid=stolist.get(i).getSid();
-			List<Double> historyData=new ArrayList<Double>();
+			List<Double> historyData=historyDataOperation.selectAttribute_num_date(stockid,"incrPer", days, new Date(today.getTimeInMillis()));
 			
 			int hisize=historyData.size();
 			
@@ -40,7 +37,7 @@ public class MultFacHelper {
 			double attribute=0.0;
 			
 			if(hisize!=0){
-				historyData=historyDataOperation.selectAttribute_num_date(stockid,"incrPer", days, new Date(today.getTimeInMillis()));
+				System.out.println(historyData);
 				for(int k=0;k<historyData.size();k++){
 					incPerc+=historyData.get(k);
 				}
@@ -99,7 +96,10 @@ public class MultFacHelper {
 				max=t;
 			}
 		}
-		
+		for(int i=0;i<sumsto;i++){
+			result.add(templist.get(max*sumsto+i).stockId);
+			System.out.println(i+"  "+templist.get(max*sumsto+i).stockId);
+		}
 		multfactdata=new MultFactData(Attribute,result,testResult[max]/10,days,sumsto);
 		
 		return multfactdata;

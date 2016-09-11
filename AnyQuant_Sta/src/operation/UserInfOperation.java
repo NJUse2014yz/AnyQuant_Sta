@@ -1,7 +1,5 @@
 package operation;
 
-import helper.Connector;
-
 public class UserInfOperation extends Operation{
 	public void createTable()
 	{

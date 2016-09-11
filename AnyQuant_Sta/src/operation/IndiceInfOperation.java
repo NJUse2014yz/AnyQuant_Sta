@@ -1,7 +1,6 @@
 package operation;
 
 import helper.Connector;
-import helper.JsonExchangeTool;
 import helper.QueryTool;
 
 import java.sql.Date;
@@ -146,7 +145,7 @@ public class IndiceInfOperation extends Operation{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		List list=null;
+		List<HashMap<String,Object>> list=null;
 		try {
 			list=QueryTool.resultSetToList(resultSet);
 			
@@ -156,7 +155,7 @@ public class IndiceInfOperation extends Operation{
 		conn.close();
 		for(int i=0;i<list.size();i++)
 		{
-			HashMap map=(HashMap)list.get(i);
+			HashMap<String,Object> map=list.get(i);
 //			System.out.println(map);
 			indiceInfList.add(new IndiceInf(
 					(int)map.get("id"),(String)map.get("iid"),(String)map.get("iname"),(Date)map.get("date"),(int)map.get("hisid"),(int)map.get("quoid"),

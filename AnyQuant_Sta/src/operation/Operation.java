@@ -1,8 +1,7 @@
 package operation;
 
 import java.sql.ResultSet;
-import java.util.Calendar;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 import helper.Connector;
 
@@ -44,16 +43,18 @@ public class Operation {
 	}
 	public static void init()
 	{
+		new StockInfOperation().initialTable();
+		new IndiceInfOperation().initialTable();
+		update();
+		new StockInfOperation().updatePartnerAll();
+		new MultFactStockRecommendOperation().initialTable();
+		
 //		new UserInfOperation().initialTable();
-//		new StockInfOperation().initialTable();
-//		new StockInfOperation().updatePartnerAll();
-//		new IndiceInfOperation().initialTable();
 //		new AreaInfOperation().initailTable();
 //		new ConceptInfOperation().initailTable();
 //		new IndustryInfOperation().initailTable();
 //		new AreaLatestOperation().initailTable();
 //		new StrategyOperation().createTable();
-//		new MultFactStockRecommendOperation().initialTable();
 
 //		FunctionOperation fo=new FunctionOperation();
 //		fo.createTable();
@@ -93,37 +94,40 @@ public class Operation {
 		new MonthHDataOperation().updateAll();
 		new WeekQDataOperation().updateAll();
 		new MonthQDataOperation().updateAll();
-//		new AreaLatestOperation().updateAll();
-//		new ConceptLatestOperation().updateAll();
-//		new IndustryLatestOperation().updateAll();
+		new AreaLatestOperation().updateAll();
+		new ConceptLatestOperation().updateAll();
+		new IndustryLatestOperation().updateAll();
 		
 	}
+//	@SuppressWarnings("resource")
 	public static void main(String[] args)
 	{
-		Scanner in=new Scanner(System.in);
-		while(true)
-		{
-			String order=in.next();
-			if(order.equals("initial"))
-			{
-				init();
-				System.out.println("initial done!");
-			}
-			else if(order.equals("update"))
-			{
-//				Calendar cal=Calendar.getInstance();
-//				if(cal.get(Calendar.HOUR_OF_DAY)==16)
-//				{
+//		System.out.println("please input your order:");
+//		Scanner in=new Scanner(System.in);
+//		while(true)
+//		{
+//			System.out.println("please input your order:");
+//			String order=in.next();
+//			if(order.equals("initial"))
+//			{
+//				init();
+//				System.out.println("initial done!");
+//			}
+//			else if(order.equals("update"))
+//			{
+////				Calendar cal=Calendar.getInstance();
+////				if(cal.get(Calendar.HOUR_OF_DAY)==16)
+////				{
 					update();
 					System.out.println("update done!");
-//				}
-			}
-			else
-			{
-				System.out.println("exit!");
-				System.exit(0);
-			}
-		}
+////				}
+//			}
+//			else
+//			{
+//				System.out.println("exit!");
+//				System.exit(0);
+//			}
+//		}
 		
 	}
 }

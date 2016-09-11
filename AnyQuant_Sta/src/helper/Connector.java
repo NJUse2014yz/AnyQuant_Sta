@@ -6,7 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Connector {
-	public static final String url = "jdbc:mysql://114.55.37.133:25003/AnyQuant?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true";  
+	public static final String url = "jdbc:mysql://114.55.37.133:25003/AnyQuant?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false";  
     public static final String name = "com.mysql.jdbc.Driver";  
     public static final String user = "AnyQuant";
     public static final String password = "";

@@ -7,7 +7,6 @@ import java.util.List;
 
 import net.sf.json.JSONArray;
 import type.MultFactData;
-import type.QuotaData;
 
 
 public class MultFactStockRecommendOperation extends Operation{
@@ -35,6 +34,7 @@ public class MultFactStockRecommendOperation extends Operation{
 	}
 	public void initialTable()
 	{
+		this.deleteTable();
 		this.createTable();
 		List<MultFactData> list=new ArrayList<MultFactData>();
 		try {
